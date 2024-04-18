@@ -1,7 +1,16 @@
 // utils/taskFunction.js
+export function taskFunctions() {
+  getTasks, 
+  saveTasks, 
+  createNewTask, 
+  patchTask, 
+  putTask, 
+  deleteTask
 
-// Simulate fetching tasks from localStorage
-export const getTasks = () => {
+}
+
+  // Simulate fetching tasks from localStorage
+const getTasks = () => {
   const tasks = localStorage.getItem('tasks');
   return tasks ? JSON.parse(tasks) : [];
 };
@@ -11,7 +20,7 @@ const saveTasks = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-export const createNewTask = (task) => {
+const createNewTask = (task) => {
   const tasks = getTasks(); // Retrieve existing tasks
   const newTask = { ...task, id: new Date().getTime() }; // Create new task with unique ID
   tasks.push(newTask); // Add new task to the array
@@ -20,7 +29,7 @@ export const createNewTask = (task) => {
 };
 
 
-export const patchTask = (id, updates) => {
+const patchTask = (id, updates) => {
   const tasks = getTasks();
   const taskIndex = tasks.findIndex(task => task.id === id);
   if (taskIndex > -1) {
@@ -31,7 +40,7 @@ export const patchTask = (id, updates) => {
   return tasks; // Optionally return the updated tasks list for further processing
 };
 
-export const putTask = (id, updatedTask) => {
+const putTask = (id, updatedTask) => {
   const tasks = getTasks();
   const taskIndex = tasks.findIndex((task) => task.id === id);
   if (taskIndex > -1) {
@@ -41,10 +50,11 @@ export const putTask = (id, updatedTask) => {
   location.reload(); // Or better, re-render tasks without reloading
 };
 
-export const deleteTask = (id) => {
+const deleteTask = (id) => {
   const tasks = getTasks();
   const updatedTasks = tasks.filter(task => task.id !== id);
   saveTasks(updatedTasks);
   // Previously: location.reload(); Now: We'll refresh the UI instead.
   return updatedTasks; // Optionally return the updated tasks list for further processing
 };
+
