@@ -1,13 +1,21 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 
-import {taskFunctions} from `./utils/taskFunctions`
+import {
+  getTasks, 
+  saveTasks, 
+  createNewTask, 
+  patchTask, 
+  putTask, 
+  deleteTask}  from `./utils/taskFunctions.js`
+
+import initialData from `./initialData.js`
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
-function initializeData() {
+function initialData() {
   if (!localStorage.getItem('tasks')) {
     localStorage.setItem('tasks', JSON.stringify(initialData)); 
     localStorage.setItem('showSideBar', 'true')
@@ -17,12 +25,12 @@ function initializeData() {
 }
 
 // TASK: Get elements from the DOM
-const elements = {
+const elements = document.getElementById('side-bar-div');
 
-}
+
 
 let activeBoard = ""
-
+  
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
 function fetchAndDisplayBoardsAndTasks() {
@@ -31,7 +39,7 @@ function fetchAndDisplayBoardsAndTasks() {
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    activeBoard = localStorageBoard ? localStorageBoard ;  boards[0]; 
+    activeBoard = localStorageBoard ? localStorageBoard : boards[0]; 
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard)
     refreshTasksUI();
@@ -47,13 +55,13 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.click()  { 
+    boardElement.click();
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
       localStorage.setItem("activeBoard", JSON.stringify(activeBoard))
       styleActiveBoard(activeBoard)
-    };
+    ;
     boardsContainer.appendChild(boardElement);
   });
 
