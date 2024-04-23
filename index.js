@@ -1,7 +1,7 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
-
-
+import {getTask, createNewTask, patchTask, putTask, deleteTask} from './utils/taskFunctions.js'
+import { initialData } from './initialData.js';
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
@@ -257,5 +257,6 @@ function init() {
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
   document.body.classList.toggle('light-theme', isLightTheme);
+  initializeData();
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
