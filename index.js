@@ -15,20 +15,20 @@ function initializeData() {
     console.log('Data already exists in localStorage');
   }
 
-}
+};
 
 // TASK: Get elements from the DOM
 const elements = {
  
-  headerBoardName: document.getElementById("header-board-name"),
+  
   filterDiv: document.getElementById("filterDiv"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
   themeSwitch: document.getElementById("switch"),
   createNewTaskBtn: document.getElementById("add-new-task-btn"), 
   modalWindow: document.getElementById("new-task-modal-window"),
-  columnDivs: document.querySelectorAll('.column-div'),
-  
+  displayBoards: document.querySelectorAll('.column-div'),
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
 }
 
 let activeBoard = ""
@@ -45,6 +45,7 @@ function fetchAndDisplayBoardsAndTasks() {
     elements.headerBoardName.textContent = activeBoard
     styleActiveBoard(activeBoard);
     refreshTasksUI();
+  
   }
 }
 
@@ -90,8 +91,8 @@ function filterAndDisplayTasksByBoard(boardName) {
     filteredTasks.filter(task => task.status === status).forEach(task => {   //Bug Fix ===
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
-      taskElement.textContent = task.title + ' ' + task.description;
-      taskElement.setAttribute('data-task-id', task.id, task.status);
+      taskElement.textContent = task.title;
+      taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
       taskElement.addEventListener('click', () => { 
@@ -271,7 +272,7 @@ function saveTaskChanges(taskId) {
   const newStatus = editSelectStatus.value;
   // Create an object with the updated task details
   const updatedTask = {
-    id: taskId,
+    
     title: newTitle,
     description: newDescription,
     status: newStatus,
