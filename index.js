@@ -15,9 +15,10 @@ function initializeData() {
   } else {
     console.log('Data already exists in localStorage');
   }
+  return initializeData();
 }
 
- // Call the function to initialize data on page load
+
 
 // TASK: Get elements from the DOM
 const elements = {
@@ -204,11 +205,11 @@ function addTask(event) {
 
   // Assign user input to the task object
   const task = {
-    id: new Date().getTime(), // Generate unique ID
-    title: document.getElementById('title-input').value, // Corrected element IDs
-    description: document.getElementById('desc-input').value, // Corrected element IDs
-    status: document.getElementById('select-status').value, // Corrected element IDs
-    board: activeBoard // Assign active board
+    id: new Date().getTime(), 
+    title: document.getElementById('title-input').value, 
+    description: document.getElementById('desc-input').value, 
+    status: document.getElementById('select-status').value, 
+    board: activeBoard 
   };
   const newTask = createNewTask(task);
   if (newTask) {
