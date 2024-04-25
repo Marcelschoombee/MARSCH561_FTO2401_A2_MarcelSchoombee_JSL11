@@ -15,7 +15,7 @@ function initializeData() {
   } else {
     console.log('Data already exists in localStorage');
   }
-  return initializeData();
+ 
 }
 
 
@@ -32,7 +32,9 @@ const elements = {
   modalWindow: document.getElementById("new-task-modal-window"),
   columnDivs: document.querySelectorAll('.column-div'),
   editTaskModal: document.querySelector('.edit-task-modal-window'),
-  headerBoardName: document.querySelector('.header-board-name') // Added missing element
+  headerBoardName: document.querySelector('.header-board-name'),
+  deleteTaskBtn: document.getElementById("deiete-task-btn"),
+  cancelTaskBtn: document.getElementById("cancel-task-btn")
 };
 
 let activeBoard = "";
@@ -279,7 +281,7 @@ function saveTaskChanges(taskId) {
   const newStatus = editSelectStatus.value;
   // Create an object with the updated task details
   const updatedTask = {
-    id: taskId, // Use the existing task ID
+    id: taskId, 
     title: newTitle,
     description: newDescription,
     status: newStatus,
