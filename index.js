@@ -47,7 +47,7 @@ function fetchAndDisplayBoardsAndTasks() {
   displayBoards(boards);
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
-    activeBoard = localStorageBoard ? localStorageBoard : boards[0];
+    activeBoard = localStorageBoard ? localStorageBoard : boards[0]; // syntax error 
     elements.headerBoardName.textContent = activeBoard;
     styleActiveBoard(activeBoard);
     refreshTasksUI();
@@ -63,7 +63,7 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.addEventListener('click', () => {
+    boardElement.addEventListener('click', () => {      // Missing event listener
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board; // assigns active board
@@ -78,7 +78,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter(task => task.board === boardName);
+  const filteredTasks = tasks.filter(task => task.board === boardName); // single = must be ===
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -100,7 +100,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
-      taskElement.addEventListener('click', () => {
+      taskElement.addEventListener('click', () => { // missing event listener
         openEditTaskModal(task);
       });
 
@@ -119,7 +119,7 @@ function refreshTasksUI() {
 function styleActiveBoard(boardName) {
   document.querySelectorAll('.board-btn').forEach(btn => {
 
-    if (btn.textContent === boardName) {
+    if (btn.textContent === boardName) {   // Bug fix ===
       btn.classList.add('active');
     }
     else {
@@ -174,7 +174,7 @@ function setupEventListeners() {
 
 
   // Show sidebar event listener
-  elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
+  elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false)); //event listener missing
   elements.showSideBarBtn.addEventListener('click', () => toggleSidebar(true));
 
   // Theme switch event listener
@@ -195,7 +195,7 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' : 'none';
+  modal.style.display = show ? 'block' : 'none'; // : not arrow function
 }
 
 /*************************************************************************************************************************************************
@@ -209,7 +209,7 @@ function addTask(event) {
   const task = {
     id: new Date().getTime(), 
     title: document.getElementById('title-input').value, 
-    description: document.getElementById('desc-input').value, 
+    description: document.getElementById('desc-input').value,      
     status: document.getElementById('select-status').value, 
     board: activeBoard 
   };
