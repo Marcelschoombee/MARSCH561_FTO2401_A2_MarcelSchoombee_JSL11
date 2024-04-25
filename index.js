@@ -33,8 +33,6 @@ const elements = {
   columnDivs: document.querySelectorAll('.column-div'),
   editTaskModal: document.querySelector('.edit-task-modal-window'),
   headerBoardName: document.querySelector('.header-board-name'),
-  deleteEditBtn: document.getElementById("deiete-edit-btn"),
-  cancelEditBtn: document.getElementById("cancel-edit-btn")
 };
 
 let activeBoard = "";
