@@ -22,8 +22,10 @@ initializeData()
 
 // TASK: Get elements from the DOM
 const elements = {
+
   
-  headerBoardName: document.getElementById("boards-nav-links-div"),
+  sidebar: document.getElementById("side-bar-div"),
+  headerBoardName: document.getElementById("header-board-name"),
   filterDiv: document.getElementById("filterDiv"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
@@ -32,9 +34,7 @@ const elements = {
   modalWindow: document.getElementById("new-task-modal-window"),
   columnDivs: document.querySelectorAll('.column-div'),
   editTaskModal: document.querySelector('.edit-task-modal-window'),
-  headerBoardName: document.querySelector('.header-board-name'),
-  deleteEditBtn: document.getElementById("deiete-edit-btn"),
-  cancelEditBtn: document.getElementById("cancel-edit-btn")
+
 };
 
 let activeBoard = "";
@@ -227,7 +227,10 @@ function addTask(event) {
 function toggleSidebar(show) {
   const sidebar = document.getElementById("side-bar-div");
   sidebar.style.display = show ? 'block' : 'none';
-
+  const showSidebarBtn = document.getElementById("show-side-bar-btn");
+  const hideSidebarBtn = document.getElementById("hide-side-bar-btn");
+  showSidebarBtn.style.display = show ? 'none' : 'block';
+  hideSidebarBtn.style.display = show ? 'block' : 'none';
 }
 
 function toggleTheme() {
@@ -265,7 +268,12 @@ function openEditTaskModal(task) {
   deleteTaskBtn.addEventListener('click', () => {
     deleteTask(task.id);
     toggleModal(false, elements.editTaskModal);
-  });
+    // Remove the task from the UI
+    const taskElement = document.querySelector(`.task-div[data-task-id="${task.id}"]`);
+    if (taskElement) {
+        taskElement.remove();
+    }
+});
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
