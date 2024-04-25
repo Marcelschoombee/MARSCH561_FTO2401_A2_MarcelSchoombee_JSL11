@@ -18,12 +18,12 @@ function initializeData() {
  
 }
 
-
+initializeData()
 
 // TASK: Get elements from the DOM
 const elements = {
   
-  sideBarDiv: document.getElementById("side-bar-div"),
+  headerBoardName: document.getElementById("boards-nav-links-div"),
   filterDiv: document.getElementById("filterDiv"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
@@ -32,9 +32,8 @@ const elements = {
   modalWindow: document.getElementById("new-task-modal-window"),
   columnDivs: document.querySelectorAll('.column-div'),
   editTaskModal: document.querySelector('.edit-task-modal-window'),
-  headerBoardName: document.querySelector('.header-board-name'),
-  deleteEditBtn: document.getElementById("deiete-edit-btn"),
-  cancelEditBtn: document.getElementById("cancel-edit-btn")
+  
+
 };
 
 let activeBoard = "";
@@ -304,9 +303,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function init() {
   setupEventListeners();
-  const showSidebar = localStorage.getItem('showSideBar') === 'true';
+  const showSidebar = localStorage.getItem('showSideBar') === 'false';
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
   document.body.classList.toggle('light-theme', isLightTheme);
+  
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
+
