@@ -17,7 +17,7 @@ function initializeData() {
   }
 }
 
-initializeData(); // Call the function to initialize data on page load
+ // Call the function to initialize data on page load
 
 // TASK: Get elements from the DOM
 const elements = {
